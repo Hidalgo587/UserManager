@@ -1,0 +1,29 @@
+apply plugin: 'jetty'
+apply plugin: 'com.bmuschko.tomcat'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+    }
+}
+
+dependencies {
+    def tomcatVersion = '8.0.35'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+    compile 'org.glassfish.jersey.bundles:jaxrs-ri:2.23'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile group: 'com.rabbitmq', name: 'amqp-client', version: '3.2.4'
+    compile group: 'org.glassfish.jersey.media', name:'jersey-media-json-jackson', version: '2.23'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}

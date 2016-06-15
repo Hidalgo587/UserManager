@@ -1,33 +1,40 @@
 package com.userm;
 
-import javax.print.attribute.standard.Media;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.List;
-import java.util.StringTokenizer;
 
 @Path("/UserService")
 public class UserService {
 
-    UserDao userDao = new UserDao();
     private static final String SUCCESS_RESULT="<result>success</result>";
     private static final String FAILURE_RESULT="<result>failure</result>";
+
+    private SendInterface message;
+    private UserDaoInterface userdao;
+
+    @Inject
+    public UserService(SendInterface message, UserDaoInterface userdao) {
+        this.message = message;
+        this.userdao = userdao;
+    }
 
     @GET
     @Path("/users")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<User> getUsers() {
-        return userDao.getAllUsers();
+        return userdao.getAllUsers();
     }
 
     @GET
     @Path("/users/{userid}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public User getUser(@PathParam("userid") int userid){
-        return userDao.getUser(userid);
+        return userdao.getUser(userid);
     }
 
     @PUT
@@ -39,9 +46,9 @@ public class UserService {
         @FormParam("profession") String profession,
         @Context HttpServletResponse servletResponse) throws IOException{
         User user = new User(id, name, profession);
-        int result = userDao.addUser(user);
+        int result = userdao.addUser(user);
         if(result == 1){
-            Send.message("PUT");
+            message.message("PUT");
             return SUCCESS_RESULT;
         }
         return FAILURE_RESULT;
@@ -56,9 +63,9 @@ public class UserService {
                              @FormParam("profession") String profession,
                              @Context HttpServletResponse servletResponse) throws IOException{
         User user = new User(id, name, profession);
-        int result = userDao.updateUser(user);
+        int result = userdao.updateUser(user);
         if(result == 1){
-            Send.message("POST");
+            message.message("POST");
             return SUCCESS_RESULT;
         }
         return FAILURE_RESULT;
@@ -68,9 +75,9 @@ public class UserService {
     @Path("/users/{userid}")
     @Produces(MediaType.APPLICATION_XML)
     public String deleteUser(@PathParam("userid") int userid) throws IOException {
-        int result = userDao.deleteUser(userid);
+        int result = userdao.deleteUser(userid);
         if(result == 1){
-            Send.message("DELETE");
+            message.message("DELETE");
             return SUCCESS_RESULT;
         }
         return FAILURE_RESULT;

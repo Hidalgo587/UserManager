@@ -4,11 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by developer on 13/06/16.
- */
-public class UserDao {
+public class UserDao implements UserDaoInterface{
     public List<User> getAllUsers() {
         List<User> userList = null;
         try {

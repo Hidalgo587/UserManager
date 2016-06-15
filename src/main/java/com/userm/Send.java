@@ -2,13 +2,13 @@ package com.userm;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
-
 import java.io.IOException;
 
-public class Send {
+
+public class Send implements SendInterface{
     private final static String QUEUE_NAME = "hello";
 
-    public static void message(String s) throws IOException{
+    public void message(String s) throws IOException{
 
         //Server connection
         ConnectionFactory factory = new ConnectionFactory();

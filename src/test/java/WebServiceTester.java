@@ -1,4 +1,4 @@
-package com.userm;
+import com.userm.User;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 public class WebServiceTester  {
 
     private Client client;
-    private String REST_SERVICE_URL = "http://localhost:8080/usmgr/rest/UserService/users";
+    private String REST_SERVICE_URL = "http://localhost:8080/Usmgr/rest/UserService/users";
     private static final String SUCCESS_RESULT="<result>success</result>";
     private static final String PASS = "pass";
     private static final String FAIL = "fail";

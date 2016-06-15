@@ -12,7 +12,12 @@
          <param-name>jersey.config.server.provider.packages</param-name>
          <param-value>com.userm</param-value>
       </init-param>
+      <init-param>
+         <param-name>javax.ws.rs.Application</param-name>
+         <param-value>com.userm.Usmgr</param-value>
+      </init-param>
    </servlet>
+
    <servlet-mapping>
       <servlet-name>Jersey RESTful Application</servlet-name>
       <url-pattern>/rest/*</url-pattern>

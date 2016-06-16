@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements UserDaoInterface{
+
     public List<User> getAllUsers() {
         List<User> userList = null;
         try {

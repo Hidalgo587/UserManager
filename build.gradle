@@ -18,7 +18,8 @@ dependencies {
     compile 'org.glassfish.jersey.bundles:jaxrs-ri:2.23'
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '3.2.4'
-    compile group: 'org.glassfish.jersey.media', name:'jersey-media-json-jackson', version: '2.23'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.23'
+    compile group: 'org.mongodb.morphia', name: 'morphia', version: '1.2.0'
 }
 
 allprojects {

@@ -9,6 +9,6 @@ public class MyApplicationBinder extends AbstractBinder {
     @Override
     protected void configure() {
         bind(Send.class).to(SendInterface.class);
-        bind(UserDao.class).to(UserDaoInterface.class);
+        bind(UserDaoMDB.class).to(UserDaoInterface.class);
     }
 }
